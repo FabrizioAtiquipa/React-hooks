@@ -1,4 +1,5 @@
 import React from "react";
+import Statistic from "./Statistic";
 
 export default function Statistics(props) {
   const { promedio, good, neutral, bad } = props;
@@ -10,12 +11,23 @@ export default function Statistics(props) {
         <p>There are no results, press more than one button!</p>
       ) : (
         <div>
-          <p>good {good}</p>
-          <p>neutral {neutral}</p>
-          <p>bad {bad}</p>
-          <p>all {good + neutral + bad}</p>
-          <p>average {promedio / (good + neutral + bad)}</p>
-          <p>positive {(good / (good + neutral + bad)) * 100}%</p>
+          <Statistic estado="good" valor={good} />
+          <Statistic estado="neutral" valor={neutral} />
+          <Statistic estado="bad" valor={bad} />
+          <Statistic
+            estado="all"
+            valor={good + neutral + bad}
+          />
+          <Statistic
+            estado="average"
+            valor={promedio / (good + neutral + bad)}
+          />
+          <Statistic
+            estado="positive"
+            valor={
+              (good / (good + neutral + bad)) * 100
+            }
+          />
         </div>
       )}
     </div>
