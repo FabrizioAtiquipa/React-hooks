@@ -4,12 +4,40 @@ import ReactDOM from 'react-dom'
 const App = (props) => {
   const [selected, setSelected] = useState(0)
 
+  const [votaciones,setVotaciones] = useState([0])
+
+  const [contador, setContador] = useState(0)
+
+  const Siguiente = () => {
+      setSelected(getRandomInt(0,anecdotes.length))
+  }
+
+  const Voto = () => {
+      if(!votaciones[selected]){
+          votaciones[selected]=0
+      }
+      votaciones[selected]=votaciones[selected]+1
+      setVotaciones(votaciones)
+      setContador(contador+1)
+  }
+
+  function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min)) + min;
+  }
+
+
   return (
-    <div>
-      {props.anecdotes[selected]}
-    </div>
+      <div>
+          {props.anecdotes[selected]}
+          <br/>
+          has {votaciones[selected]} votes
+          <hr/>
+          <button onClick={Voto}>Vote</button>
+          <button onClick={Siguiente}>Next Anecdote</button>
+      </div>
   )
 }
+
 
 const anecdotes = [
   'If it hurts, do it more often',
