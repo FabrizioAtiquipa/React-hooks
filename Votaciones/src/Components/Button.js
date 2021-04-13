@@ -1,6 +1,7 @@
 import React from "react";
+import './Button.scss'
 
 export default function Button(props) {
   const { boton, estado } = props;
-  return <button onClick={boton}>{estado}</button>;
+  return <button className="button" onClick={boton}>{estado}</button>;
 }

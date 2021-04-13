@@ -5,25 +5,25 @@ export default function Statistics(props) {
   const { promedio, good, neutral, bad } = props;
 
   return (
-    <div>
-      <h3>Statistics</h3>
+    <div> 
+      <h3 style={{fontFamily:"monospace", fontSize:30}}>Statistics</h3>
       {good + neutral + bad == 0 ? (
-        <p>There are no results, press more than one button!</p>
+        <p style={{fontFamily:"monospace", fontSize:15}}>There are no results, press more than one button!</p>
       ) : (
-        <div>
-          <Statistic estado="good" valor={good} />
-          <Statistic estado="neutral" valor={neutral} />
-          <Statistic estado="bad" valor={bad} />
+        <div style={{fontFamily:"monospace", fontSize:15}}>
+          <Statistic estado="GOOG" valor={good} />
+          <Statistic estado="NEUTRAL" valor={neutral} />
+          <Statistic estado="BAD" valor={bad} />
           <Statistic
-            estado="all"
+            estado="ALL"
             valor={good + neutral + bad}
           />
           <Statistic
-            estado="average"
+            estado="AVERAGE"
             valor={promedio / (good + neutral + bad)}
           />
           <Statistic
-            estado="positive"
+            estado="POSITIVE"
             valor={
               (good / (good + neutral + bad)) * 100
             }
