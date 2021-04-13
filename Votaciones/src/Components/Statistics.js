@@ -6,12 +6,18 @@ export default function Statistics(props) {
   return (
     <div>
       <h3>Statistics</h3>
-      <p>good {good}</p>
-      <p>neutral {neutral}</p>
-      <p>bad {bad}</p>
-      <p>all {good + neutral + bad}</p>
-      <p>average {promedio / (good + neutral + bad)}</p>
-      <p>positive {(good / (good + neutral + bad)) * 100}%</p>
+      {good + neutral + bad == 0 ? (
+        <p>There are no results, press more than one button!</p>
+      ) : (
+        <div>
+          <p>good {good}</p>
+          <p>neutral {neutral}</p>
+          <p>bad {bad}</p>
+          <p>all {good + neutral + bad}</p>
+          <p>average {promedio / (good + neutral + bad)}</p>
+          <p>positive {(good / (good + neutral + bad)) * 100}%</p>
+        </div>
+      )}
     </div>
   );
 }
