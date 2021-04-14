@@ -3,13 +3,29 @@ import ReactDOM from 'react-dom'
 
 const App = (props) => {
   const [selected, setSelected] = useState(0)
-
   const [votaciones,setVotaciones] = useState([0])
-
+  const [aceptacion, setAceptacion] = useState(-1)
   const [contador, setContador] = useState(0)
 
   const Siguiente = () => {
       setSelected(getRandomInt(0,anecdotes.length))
+      calcularAceptacion()
+  }
+  
+  function calcularAceptacion(){
+      console.log(votaciones)
+      let index=0
+      let mayor=0
+      while (index < anecdotes.length) {
+          if(votaciones[index]){
+              if(votaciones[index]>mayor){
+                  mayor=votaciones[index]
+                  setAceptacion(index)
+              }
+          }
+          index++
+      }
+
   }
 
   const Voto = () => {
@@ -19,6 +35,8 @@ const App = (props) => {
       votaciones[selected]=votaciones[selected]+1
       setVotaciones(votaciones)
       setContador(contador+1)
+
+      calcularAceptacion()
   }
 
   function getRandomInt(min, max) {
@@ -28,16 +46,30 @@ const App = (props) => {
 
   return (
       <div>
+          <h1>Anecdote of the day</h1>
           {props.anecdotes[selected]}
           <br/>
           has {votaciones[selected]} votes
           <hr/>
+          <br/>
           <button onClick={Voto}>Vote</button>
           <button onClick={Siguiente}>Next Anecdote</button>
+          <br/>
+          {
+              (aceptacion>=0) ?
+                  <div>
+                      <h1>Anecdote with most votes</h1>
+                      {props.anecdotes[aceptacion]}
+                      <br/>
+                      has {votaciones[aceptacion]} votes
+                  </div>
+                  :
+                  <div></div>
+          }
       </div>
   )
-}
 
+}
 
 const anecdotes = [
   'If it hurts, do it more often',
