@@ -8,8 +8,7 @@ import {
 import Logo from "../../img/logo.png";
 import "./MenuTop.scss";
 
-export default function MenuTop(props) {
-  const { menuCollapsed, setMenuCollapsed } = props;
+export default function MenuTop(setMenuCollapsed,menuCollapsed) {
   return (
     <div className="menu-top">
       <div className="menu-top__left">
